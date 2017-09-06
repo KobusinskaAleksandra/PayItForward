@@ -1,24 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>   
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pl_PL">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/mystyle.css"> 
+	<link rel="stylesheet" type="text/css" href="styles/css/mystyle.css"> 
 <title> PAY IT FORWARD - Just do something good</title>
 </head>
 <body>
   <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
-			<img id="logo" src="/images/logo.jpg"></img>
+			<img id="logo" src="styles/images/logo.jpg"></img>
 		</div>
 	</div>
 	<div class="row"> 
 		<div class="col-sm-12">
-		 <%@ include file="headerLog.jspf" %>
 			<nav class="navbar navbar-inverse">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -31,13 +33,21 @@
 					</div>
 					<div class="collapse navbar-collapse" id="myNavbar">
 						<ul class="nav navbar-nav">
-							<li><a href="index">Jak to działa</a></li>
-							<li><a href="give">Zrób coś</a></li>
-							<li><a href="get">Znajdź pomoc</a></li>
-							<li><a href="inspiration">Inspiracje</a></li>
+							<li><a href="index">How it works</a></li>
+							<li><a href="give">Do something good</a></li>
+							<li><a href="get">Find help</a></li>
+							<li><a href="inspiration">Inspiration</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="mailto:kobusinska.ola@gmail.com"><span class="glyphicon glyphicon-envelope"></span> Contact Me</a></li>
+							
+							<%if(request.getSession().getAttribute("login")!=null) {  %>
+							<li> <a href="profile"> My profile </a></li>
+							<li> <a href="messages"><span class="glyphicon glyphicon-envelope"></span> Inbox </a></li>
+							<li><a href="logout"> Logout </a> </li>						
+							<%} else {%>
+							<li><a href="register"> Register / Login </a> </li>
+							<% } %>
+							<li><a href="mailto:kobusinska.ola@gmail.com"><span class="glyphicon glyphicon-envelope"></span> Contact Admin</a></li>
 						</ul>
 					</div>
 				</div>
