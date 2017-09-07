@@ -5,8 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Responses {
@@ -14,8 +15,10 @@ public class Responses {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@OneToOne
+	@NotBlank
 	private Requests request;
 	@ManyToOne
+	@NotBlank
 	private UsersDetails user;
 	
 	public long getId() {

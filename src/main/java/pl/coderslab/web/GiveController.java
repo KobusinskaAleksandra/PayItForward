@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import pl.coderslab.entity.Requests;
 import pl.coderslab.entity.Responses;
 import pl.coderslab.repository.RequestsRepository;
@@ -40,17 +42,18 @@ public class GiveController {
 	
 	
 	@RequestMapping(value="/give", method=RequestMethod.POST)
-	public String getPostView (HttpServletRequest request, Model model) {
+	public String getPostView (final RedirectAttributes redirectAttributes, HttpServletRequest request, Model model) {
 		Responses response = new Responses();
 		if (request.getSession().getAttribute("login")!=null) {
 		response.setUser(usersDetailsRepository.findById((Long) request.getSession().getAttribute("login")));
 		response.setRequest(requestRepository.findById(Long.parseLong(request.getParameter("requestId"))));
 		responseRepository.save(response);
+		return "profile";
 		}
 		else {
-		
+			redirectAttributes.addFlashAttribute("error", "musisz byc zalogowany!");
+			return "redirect:give";
 		}
-		return "give";
 	}
 	
 }

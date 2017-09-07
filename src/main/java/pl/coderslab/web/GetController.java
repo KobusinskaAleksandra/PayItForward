@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.coderslab.entity.Category;
 import pl.coderslab.entity.Cities;
@@ -22,7 +22,6 @@ import pl.coderslab.repository.RequestsRepository;
 import pl.coderslab.repository.UsersDetailsRepository;
 
 @Controller
-@SessionAttributes({"", ""})
 public class GetController {
 	
 	@Autowired
@@ -33,7 +32,6 @@ public class GetController {
 	RequestsRepository requestRepository;
 	@Autowired
 	UsersDetailsRepository usersRepository;
-	
 
 	
 	@ModelAttribute(value="cities")
@@ -51,12 +49,18 @@ public class GetController {
 	
 	
 	@RequestMapping(value="/get", method=RequestMethod.POST)
-	public String getPostView (Model model, @ModelAttribute Requests request, BindingResult result, HttpServletRequest req) {
+	public String getPostView (final RedirectAttributes redirectAttributes, Model model, @ModelAttribute Requests request, HttpServletRequest req) {
+		if (req.getSession().getAttribute("login")!=null) {
 		request.setUser((usersRepository.findById(((long)req.getSession().getAttribute("login")))));
 		requestRepository.save(request);
-		model.addAttribute("categories", categoryRepository.findAll());
-		model.addAttribute("request", new Requests());
 		return "redirect:give";
+		}
+		else {
+			redirectAttributes.addFlashAttribute("error", "musisz byc zalogowany!");
+			model.addAttribute("categories", categoryRepository.findAll());
+			model.addAttribute("request", new Requests());
+			return "redirect:get";
+		}
 	}
 	
 }

@@ -25,7 +25,7 @@ public class Messages {
 	@ManyToOne
 //	@NotNull
 	private Users sender;
-	@Size(min=10, max=2000)
+	@Size(min=5, max=2000, message="wiadomość nie może być krótsza niż 5 i dłuższa niż 2000 znaków")
 	private String body;
 //	@NotBlank
 	private LocalDateTime send;

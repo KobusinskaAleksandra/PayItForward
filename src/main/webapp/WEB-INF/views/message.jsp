@@ -12,11 +12,12 @@
             <h4 class="modal-title">Compose Message</h4>
           </div>
           <div class="modal-body">
-			<form:form method="post" class="form-horizontal" modelAttribute="sent"> 
+			<form:form method="post" class="form-horizontal" modelAttribute="sent" commandName="sent"> 
 			<div class="form-group">
                   <label class="col-sm-1" for="title">Subject</label>
                   <div class="col-sm-11">
            	       <form:input path="title" class="form-control" type="text" /> 
+                 	<form:errors path="title" cssClass="error" />
                  </div>
            </div>
                 <label for="recipient"> Select recipient:</label>
@@ -29,7 +30,10 @@
                   <label class="col-sm-12" for="body">Message</label>
                   <div class="col-sm-12">
                   	<form:textarea path="body" class="form-control" rows="6" /></div>
-                </div>
+               	 </div>
+            	 <c:if test="${not empty errors}">
+                <div class="alert alert-warning"><c:out value="${errors}"/></div>
+ 	              </c:if>
             	<input type="submit" value="Click">
 			</form:form>
           </div>

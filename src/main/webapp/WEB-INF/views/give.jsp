@@ -5,6 +5,9 @@
 <%@ include file="jspf/header.jspf" %>
 <div class="row" id="give">
 <div class="col-sm-10 col-sm-offset-1" >
+<c:if test="${not empty error}">
+        <div class="alert alert-warning"><c:out value="${error}"/></div>
+</c:if>
 
 	<table class="table is-bordered is-striped is-narrow is-fullwidth">
 		<thead class="thead-inverse">
