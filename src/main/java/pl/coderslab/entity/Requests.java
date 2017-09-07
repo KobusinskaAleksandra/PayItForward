@@ -14,7 +14,6 @@ public class Requests {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@NotBlank
 	@Size(min=5, max=100)
 	private String title;
 	private String description;

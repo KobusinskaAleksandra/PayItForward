@@ -1,5 +1,6 @@
 package pl.coderslab.web;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +16,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.coderslab.entity.Category;
 import pl.coderslab.entity.Cities;
+import pl.coderslab.entity.Messages;
 import pl.coderslab.entity.Requests;
+import pl.coderslab.entity.Users;
 import pl.coderslab.repository.CategoryRepository;
 import pl.coderslab.repository.CitiesRepository;
+import pl.coderslab.repository.MessagesRepository;
 import pl.coderslab.repository.RequestsRepository;
 import pl.coderslab.repository.UsersDetailsRepository;
+import pl.coderslab.repository.UsersRepository;
 
 @Controller
 public class GetController {
@@ -31,13 +36,18 @@ public class GetController {
 	@Autowired
 	RequestsRepository requestRepository;
 	@Autowired
-	UsersDetailsRepository usersRepository;
-
+	UsersDetailsRepository usersDetailsRepository;
+	@Autowired
+	UsersRepository usersRepository;
+	@Autowired
+	MessagesRepository messagesRepository;
 	
 	@ModelAttribute(value="cities")
 	public List<Cities> getCities() {
 		return citiesRepository.findAll();
 	}
+	
+	
 
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	public String getGetView (Model model, @ModelAttribute Category categories, @ModelAttribute Requests request, BindingResult result) {
@@ -49,7 +59,8 @@ public class GetController {
 	@RequestMapping(value="/get", method=RequestMethod.POST)
 	public String getPostView (final RedirectAttributes redirectAttributes, Model model, @ModelAttribute Requests request, HttpServletRequest req) {
 		if (req.getSession().getAttribute("login")!=null) {
-		request.setUser((usersRepository.findById(((long)req.getSession().getAttribute("login")))));
+		request.setUser((usersDetailsRepository.findById(((long)req.getSession().getAttribute("login")))));
+		;
 		requestRepository.save(request);
 		return "redirect:give";
 		}

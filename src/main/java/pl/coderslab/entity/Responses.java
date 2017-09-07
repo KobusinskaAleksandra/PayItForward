@@ -15,10 +15,8 @@ public class Responses {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@OneToOne
-	@NotBlank
 	private Requests request;
 	@ManyToOne
-	@NotBlank
 	private UsersDetails user;
 	
 	public long getId() {

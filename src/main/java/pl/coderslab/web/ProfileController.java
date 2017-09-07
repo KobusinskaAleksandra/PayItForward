@@ -40,7 +40,7 @@ public class ProfileController {
 	return usersDetailsRepository.findByUserId((long)req.getSession().getAttribute("login"));
 	}
 	
-	@ModelAttribute(name="userResponses")
+	@ModelAttribute(name="yourRequests")
 	public List <Requests> getResponse () {
 		return requestRepository.findAll();
 	}
