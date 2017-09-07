@@ -16,7 +16,6 @@ public class Users {
 	@Column(unique=true)
 	@NotBlank
 	private String login;
-	@Size(min=3, max=10)
 	private String password;
 	@Column(unique=true)
 	@NotBlank

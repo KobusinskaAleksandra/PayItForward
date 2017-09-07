@@ -32,6 +32,11 @@
 		<form:input path="password" /> <p />
 	</div>
 	</div>
+	<div>
+		<c:if test="${not empty loginPassError}">
+                <div class="alert alert-danger"><c:out value="${loginPassError}"/></div>
+ 	   	</c:if>
+	</div>
 	<div class="col-sm-offset-5 col-sm-4">
 		<input type="submit" value="Save">
 	</div>

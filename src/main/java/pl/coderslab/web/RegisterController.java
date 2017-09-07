@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pl.coderslab.bCrypt.BCrypt;
 import pl.coderslab.entity.Cities;
 import pl.coderslab.entity.Loged;
 import pl.coderslab.entity.Users;
@@ -34,7 +36,6 @@ public class RegisterController {
 	@Autowired
 	private CitiesRepository citiesRepository;
 	
-
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String registerGetView (Model model, @ModelAttribute Cities cities, BindingResult result, HttpServletRequest request) {
 	model.addAttribute("cities", citiesRepository.findAll());
@@ -45,16 +46,28 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String registerPostView (HttpServletRequest request, Model model, @ModelAttribute Loged log, @ModelAttribute UsersDetails userDetails, @ModelAttribute Users user) {
+	public String registerPostView (final RedirectAttributes redirectAttributes, HttpServletRequest request, Model model, @ModelAttribute Loged log, @ModelAttribute UsersDetails userDetails, @ModelAttribute Users user) {
 		if(!log.isChecked()) { 
+				user.setPassword( (BCrypt.hashpw(user.getPassword(), BCrypt.gensalt())));
 				userDetails.setUser(user);
 				usersRepository.save(user);
 				usersDetailsRepository.save(userDetails);
 				request.getSession().setAttribute("login", user.getId());
+				return "index";
+			}
+		else { 
+				if (BCrypt.checkpw(log.getPassword(), usersRepository.findByLogin(log.getLogin()).getPassword())) {
+					request.getSession().setAttribute("login", usersRepository.findByLogin(log.getLogin()).getId());
+					return "index";
 				}
-			else 
-				request.getSession().setAttribute("login", usersRepository.findByLogin(log.getLogin()).getId());
-		return "index";
+				else
+					redirectAttributes.addFlashAttribute("loginPassError", "niepoprawne hasło! Spróbuj ponownie");
+					model.addAttribute("userDetails", new UsersDetails());
+					model.addAttribute("user", new Users());
+					model.addAttribute("loged", new Loged());
+					return "redirect:register";
+			}
+		
 	}
 
 
