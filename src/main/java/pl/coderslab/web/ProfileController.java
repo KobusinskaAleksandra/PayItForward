@@ -3,6 +3,7 @@ package pl.coderslab.web;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,7 @@ public class ProfileController {
 	UsersRepository usersRepository;
 	@Autowired
 	UsersDetailsRepository usersDetailsRepository;
+	
 	
 	@ModelAttribute(value="user")
 	public Users getUser (HttpServletRequest req) {

@@ -45,7 +45,7 @@
 	</div> 	
 <div class="col-sm-6">
 <h2> Register </h2>
-<form:form method="post" modelAttribute="user">
+<form:form method="post" modelAttribute="users">
 <div class="row form-group">
 	<div class="col-sm-offset-1 col-sm-4">
 		<label for="login"> Enter login:</label>

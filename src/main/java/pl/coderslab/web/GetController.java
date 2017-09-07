@@ -1,6 +1,5 @@
 package pl.coderslab.web;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.coderslab.entity.Category;
 import pl.coderslab.entity.Cities;
-import pl.coderslab.entity.Messages;
 import pl.coderslab.entity.Requests;
-import pl.coderslab.entity.Users;
 import pl.coderslab.repository.CategoryRepository;
 import pl.coderslab.repository.CitiesRepository;
 import pl.coderslab.repository.MessagesRepository;
@@ -59,10 +56,9 @@ public class GetController {
 	@RequestMapping(value="/get", method=RequestMethod.POST)
 	public String getPostView (final RedirectAttributes redirectAttributes, Model model, @ModelAttribute Requests request, HttpServletRequest req) {
 		if (req.getSession().getAttribute("login")!=null) {
-		request.setUser((usersDetailsRepository.findById(((long)req.getSession().getAttribute("login")))));
-		;
-		requestRepository.save(request);
-		return "redirect:give";
+			request.setUser((usersDetailsRepository.findById(((long)req.getSession().getAttribute("login")))));
+			requestRepository.save(request);		
+			return "redirect:give";
 		}
 		else {
 			redirectAttributes.addFlashAttribute("error", "musisz byc zalogowany!");
