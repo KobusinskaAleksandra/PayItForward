@@ -16,6 +16,7 @@ public class Requests {
 	private long id;
 	@Size(min=5, max=100)
 	private String title;
+	@NotBlank
 	private String description;
 	@ManyToOne
 	private Category category;
@@ -23,6 +24,7 @@ public class Requests {
 	private Cities city;
 	@ManyToOne
 	private UsersDetails user;
+	
 	
 	public long getId() {
 		return id;

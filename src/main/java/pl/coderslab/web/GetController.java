@@ -56,12 +56,18 @@ public class GetController {
 	@RequestMapping(value="/get", method=RequestMethod.POST)
 	public String getPostView (final RedirectAttributes redirectAttributes, Model model, @ModelAttribute Requests request, HttpServletRequest req) {
 		if (req.getSession().getAttribute("login")!=null) {
+			if (request.getTitle().length()<5 || request.getTitle().length()>100 || request.getDescription().length()<1) {
+			redirectAttributes.addFlashAttribute("error", "Wrong request. Please, try again.");
+			return "redirect:get";
+			}
+			else {
 			request.setUser((usersDetailsRepository.findById(((long)req.getSession().getAttribute("login")))));
-			requestRepository.save(request);		
+			requestRepository.save(request);	
 			return "redirect:give";
+			}
 		}
 		else {
-			redirectAttributes.addFlashAttribute("error", "musisz byc zalogowany!");
+			redirectAttributes.addFlashAttribute("error", "Please, login first!");
 			model.addAttribute("categories", categoryRepository.findAll());
 			model.addAttribute("request", new Requests());
 			return "redirect:get";

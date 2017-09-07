@@ -19,14 +19,14 @@
       		</tr>
   		</thead>
   		<tbody> 
-  				<c:forEach items="${userResponses}" var="request" >
+  				<c:forEach items="${userResponses}" var="response" >
   				<tr> 
-  					<td> ${request.id}</td>
-  					<td> ${request.title}</td>
-  					<td> ${request.city}</td>
-  					<td> ${request.category}</td>
-  					<td> ${request.description}</td>
-  					<td> ${request.user}</td>
+  					<td> ${response.id}</td>
+  					<td> ${response.request.title}</td>
+  					<td> ${response.request.city}</td>
+  					<td> ${response.request.category}</td>
+  					<td> ${response.request.description}</td>
+  					<td> ${response.request.user}</td>
   				</tr>
   				</c:forEach>
   		</tbody>

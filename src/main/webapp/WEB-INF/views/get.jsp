@@ -8,6 +8,12 @@
 		<div class="col-sm-8">
 			<h2> Add request:</h2>
 		<form:form method="post" modelAttribute="request">
+			<div>
+		<c:if test="${not empty error}">
+                <div class="alert alert-danger"><c:out value="${error}"/></div>
+ 	   	</c:if>
+			</div>
+			
 			<div class="form-group">
 			<label for="title"> Enter title:</label>
 			<form:input path="title" class="form-control" /> 
