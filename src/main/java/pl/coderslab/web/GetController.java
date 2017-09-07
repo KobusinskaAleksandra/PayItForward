@@ -38,7 +38,6 @@ public class GetController {
 	public List<Cities> getCities() {
 		return citiesRepository.findAll();
 	}
-	
 
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	public String getGetView (Model model, @ModelAttribute Category categories, @ModelAttribute Requests request, BindingResult result) {
@@ -46,7 +45,6 @@ public class GetController {
 		model.addAttribute("request", new Requests());
 		return "get";
 	}
-	
 	
 	@RequestMapping(value="/get", method=RequestMethod.POST)
 	public String getPostView (final RedirectAttributes redirectAttributes, Model model, @ModelAttribute Requests request, HttpServletRequest req) {
@@ -62,5 +60,4 @@ public class GetController {
 			return "redirect:get";
 		}
 	}
-	
 }

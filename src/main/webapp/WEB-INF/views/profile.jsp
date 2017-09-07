@@ -32,6 +32,39 @@
   		</tbody>
   	</table>
 </div>
+
+<div class="col-sm-10 col-sm-offset-1" >
+
+	<table class="table is-bordered is-striped is-narrow is-fullwidth">
+		<thead class="thead-inverse">
+    		<h2> Your requests: </h2>
+    		<tr>
+     			<th>ID</th>
+      			<th>Title</th>
+      			<th>City</th>
+      			<th>Category</th>
+				<th>Description</th>																																																
+      			<th>Added by</th>
+      		</tr>
+  		</thead>
+  		<tbody> 
+  				<c:forEach items="${yourRequests}" var="request" >
+  				<tr> 
+  					<td> ${request.id}</td>
+  					<td> ${request.title}</td>
+  					<td> ${request.city}</td>
+  					<td> ${request.category}</td>
+  					<td> ${request.description}</td>
+  					<td> ${request.user}</td>
+  				</tr>
+  				</c:forEach>
+  		</tbody>
+  	</table>
+</div>
+
+
+
+
 <div class="col-sm-offset-1 col-sm-10">
 <p/>
 <p/>
