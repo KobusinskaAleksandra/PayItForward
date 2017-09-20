@@ -64,6 +64,7 @@ public class RegisterController {
 					redirectAttributes.addFlashAttribute("loginPassError", "Wrong password, try again!");
 					model.addAttribute("userDetails", new UsersDetails());
 					model.addAttribute("users", new Users());
+					log.setPassword(null);
 					model.addAttribute("loged", new Loged());
 					return "redirect:register";
 			}	

@@ -45,7 +45,7 @@ public class GiveController {
 		Messages message = new Messages();
 		message.setTitle("Someone answered at your requests");
 		message.setBody("This message was sent automatically."
-				+ "Sender of this message answered at your requests. "
+				+ "Sender of this message answered at your request. "
 				+ "Please contact him for a details");
 		message.setSend(LocalDateTime.now());
 		message.setSender(usersRepository.findById(idSend));

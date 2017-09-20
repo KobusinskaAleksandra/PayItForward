@@ -11,7 +11,7 @@
 		<form:form method="post" modelAttribute="loged">
 	<div class="row form-group">
 	<div class="col-sm-offset-4 col-sm-4">
-	<p><form:checkbox path="checked" value="true" /> Mam już konto </p>
+	<p><form:checkbox path="checked" value="true" /> I have an account </p>
 	</div>
 	</div>
 	<div class="row form-group">

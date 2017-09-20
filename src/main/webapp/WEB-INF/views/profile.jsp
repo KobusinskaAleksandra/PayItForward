@@ -6,6 +6,50 @@
 <div class="row" id="profile">
 <div class="col-sm-10 col-sm-offset-1" >
 
+
+
+<div class="col-sm-offset-1 col-sm-10">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2> Your profile </h2>
+  		</div>
+  		<div class="col-sm-2">
+  			<h2>
+  			<a href="edit">
+  			<input type="submit" value="Edit" />
+			</a>
+			</h2>
+		</div>
+	</div>
+	
+	<table class="table is-bordered is-striped is-narrow is-fullwidth">
+	<tr>
+	<td> Login: </td> 
+	<td> ${user.login} </td>
+	</tr>
+	<tr> 
+	<td> Email: </td> 
+	<td> ${user.email} </td>
+	</tr>
+	<tr>
+	<td> FirstName: </td> 
+	<td> ${userDet.firstName} </td>
+	</tr>
+	<tr>
+	<td> LastName: </td> 
+	<td> ${userDet.lastName} </td>
+	</tr>
+	<tr>
+	<td>City:</td> 
+	<td> ${userDet.city} </td>
+	</tr>
+	</table>
+
+</div>	
+
+<div class="col-sm-12">
+<p/>
+<p/>
 	<table class="table is-bordered is-striped is-narrow is-fullwidth">
 		<thead class="thead-inverse">
     		<h2> Commitments: </h2>
@@ -31,6 +75,10 @@
   				</c:forEach>
   		</tbody>
   	</table>
+
+
+</div>
+
 </div>
 
 <div class="col-sm-10 col-sm-offset-1" >
@@ -64,37 +112,6 @@
 
 
 
-
-<div class="col-sm-offset-1 col-sm-10">
-<p/>
-<p/>
-
-	<h2> Edit profile</h2>
-	<table>
-	<tr>
-	<td> Login: </td> 
-	<td> ${user.login} </td>
-	</tr>
-	<tr> 
-	<td> Email: </td> 
-	<td> ${user.email} </td>
-	</tr>
-	<tr>
-	<td> FirstName: </td> 
-	<td> ${userDet.firstName} </td>
-	</tr>
-	<tr>
-	<td> LastName: </td> 
-	<td> ${userDet.lastName} </td>
-	</tr>
-	<tr>
-	<td>City:</td> 
-	<td> ${userDet.city} </td>
-	</tr>
-	</table>
-
-</div>	
-	
 	
 </div>
 <%@ include file="jspf/footer.jspf" %>
